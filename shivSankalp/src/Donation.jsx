@@ -32,17 +32,34 @@ const DonationPage = ({ language }) => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-  const sendEmail = (e) => {
+  const sendToGoogleSheet = async (e) => {
     e.preventDefault();
-    emailjs.sendForm('service_dx4xlbz', 'template_ofn8min', form.current, 'rAhe8rnd3MGUcsd7-')
-      .then((result) => {
-        alert(`Thank you, ${formData.name}, for your donation of ₹${formData.amount}!`);
-        setFormData({ name: "", email: "", amount: "" }); // Reset form fields
-      }, (error) => {
-        console.error('Failed to send the email:', error.text);
-      });
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwCJjxJTeOugTCMA7ev5vSPyLCLFewPaugZ6hgpqzjLVPkv77eBqU11cBXT-glkO75C/exec";
+  
+    const response = await fetch(scriptURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+  
+    if (response.ok) {
+      alert(`Thank you, ${formData.name}, for your donation of ₹${formData.amount}!`);
+      setFormData({ name: "", email: "", amount: "" });
+    } else {
+      alert("Failed to save donation. Please try again.");
+    }
   };
+  
+  // const sendEmail = (e) => {
+  //   e.preventDefault();
+  //   emailjs.sendForm('service_dx4xlbz', 'template_ofn8min', form.current, 'rAhe8rnd3MGUcsd7-')
+  //     .then((result) => {
+  //       alert(`Thank you, ${formData.name}, for your donation of ₹${formData.amount}!`);
+  //       setFormData({ name: "", email: "", amount: "" }); // Reset form fields
+  //     }, (error) => {
+  //       console.error('Failed to send the email:', error.text);
+  //     });
+  // };
 
   return (
     <div className="register">
@@ -52,7 +69,7 @@ const DonationPage = ({ language }) => {
         </div>
         <div className="form-container">
           <h2>{content[language].support}</h2>
-          <form ref={form} onSubmit={sendEmail}>
+          <form ref={form} onSubmit={sendToGoogleSheet}>
             <div className="form-group">
               <label htmlFor="name">{content[language].name}:</label>
               <input type="text" name="name" value={formData.name} onChange={handleChange} required />
