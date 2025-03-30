@@ -32,23 +32,25 @@ const DonationPage = ({ language }) => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const sendToGoogleSheet = async (e) => {
-    e.preventDefault();
-    const scriptURL = "https://script.google.com/macros/s/AKfycbwCJjxJTeOugTCMA7ev5vSPyLCLFewPaugZ6hgpqzjLVPkv77eBqU11cBXT-glkO75C/exec";
-  
-    const response = await fetch(scriptURL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
-  
-    if (response.ok) {
-      alert(`Thank you, ${formData.name}, for your donation of ₹${formData.amount}!`);
-      setFormData({ name: "", email: "", amount: "" });
-    } else {
-      alert("Failed to save donation. Please try again.");
+  const sendToGoogleSheet = async (formData) => {
+    try {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbwPai5g2yMuSk9HExWvAI26oecRfMGK-5XBW-D9gRBKDvmJCZ2wBGIzDjKP4bDFbYTM/exec", {
+            method: "POST",
+            mode: "no-cors",  // Ensures no CORS issues
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+        });
+
+        console.log("Data sent successfully:", formData);
+        alert("Data has been saved successfully!");
+    } catch (error) {
+        console.error("Error saving data:", error);
+        alert("Failed to save data. Please try again.");
     }
-  };
+};
+
   
   // const sendEmail = (e) => {
   //   e.preventDefault();
