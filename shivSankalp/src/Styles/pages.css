@@ -11,15 +11,17 @@ body{
 .register{
     width: 100vw;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    
 }
 .register-form-container {
     display: flex;
     background-color: #FF9933;
     justify-content: space-evenly;
     gap: 8px;
+    margin-bottom: 100px;
     align-items: center;
     height: 85vh;
     width: 70vw; /* Adjusted width */
@@ -112,10 +114,12 @@ input[type="password"]::-webkit-input-placeholder {
 }
 
 #banner{
-    margin: 0;
-    width: 98vw;
+    border-radius: 10px;
+    /*margin: 0;
+    */width: 95vw;
     height: 70vh;
     object-fit: fill;
+    margin-right: 30px;
 }
 
 /* Media Query for Tablets */
@@ -224,9 +228,11 @@ footer {
     font-size: 14px;
     width: 20vw;
     margin: auto;
-    padding: 10px;
-    color: black;
-    border-radius: 10px;
+    border-radius: yyyy;
     background-color: rgba(255, 255, 255, 0.7);
+    -webkit-border-radius: yyyy;
+    -moz-border-radius: yyyy;
+    -ms-border-radius: yyyy;
+    -o-border-radius: yyyy;
 }
   
