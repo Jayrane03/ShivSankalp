@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import emailjs from '@emailjs/browser';
 import signUpImg from "/Images/samb.jpg";
 import banner from "/Images/banner.png";
 import "../src/Styles/pages.css";
@@ -32,36 +31,37 @@ const DonationPage = ({ language }) => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const sendToGoogleSheet = async (formData) => {
+
+  const sendToGoogleSheet = async (e) => {
+    e.preventDefault(); // Prevent form reload
+
     try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbwPai5g2yMuSk9HExWvAI26oecRfMGK-5XBW-D9gRBKDvmJCZ2wBGIzDjKP4bDFbYTM/exec", {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbwkAVibqXwfB7DD-eJ7f9CGqOYkS6FzdW-XNHZLXtzEGZ96zQorEj3pslnE4hX34y_z/exec", {
             method: "POST",
-            mode: "no-cors",  // Ensures no CORS issues
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/x-www-form-urlencoded", // ✅ Fix: Prevents CORS issues
             },
-            body: JSON.stringify(formData),
+            body: new URLSearchParams(formData).toString(), // ✅ Convert JSON to URL-encoded format
         });
 
-        console.log("Data sent successfully:", formData);
-        alert("Data has been saved successfully!");
+        const text = await response.text(); // ✅ Read response as text
+        console.log("Raw response:", text); // Debugging
+
+        // ✅ Check if response is JSON
+        const result = text.startsWith("{") ? JSON.parse(text) : { status: "error", message: "Invalid response" };
+
+        if (result.status === "success") {
+            alert("Data has been saved successfully!");
+            setFormData({ name: "", email: "", amount: "" }); // Reset form
+        } else {
+            throw new Error(result.message);
+        }
     } catch (error) {
         console.error("Error saving data:", error);
         alert("Failed to save data. Please try again.");
     }
 };
 
-  
-  // const sendEmail = (e) => {
-  //   e.preventDefault();
-  //   emailjs.sendForm('service_dx4xlbz', 'template_ofn8min', form.current, 'rAhe8rnd3MGUcsd7-')
-  //     .then((result) => {
-  //       alert(`Thank you, ${formData.name}, for your donation of ₹${formData.amount}!`);
-  //       setFormData({ name: "", email: "", amount: "" }); // Reset form fields
-  //     }, (error) => {
-  //       console.error('Failed to send the email:', error.text);
-  //     });
-  // };
 
   return (
     <div className="register">
