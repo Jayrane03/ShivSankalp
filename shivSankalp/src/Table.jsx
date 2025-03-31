@@ -1,89 +1,83 @@
-import React from "react";
-import "../src/Styles/Table.css";
+import React, { useState } from 'react';
+import '../src/Styles/Table.css'; // Importing CSS for styling
 
-const Table = ({ language }) => {
-  const content = {
-    marathi: {
-      title: "कार्यक्रम सूची",
-      programs: [
-        "कचरा व्यवस्थापन",
-        "आरोग्य तपासणी शिबिर",
-        "ऐतिहासिक शस्त्र प्रदर्शन",
-        "महिलांचे सांस्कृतिक कार्यक्रम",
-        "महाप्रसाद वाटप",
-        "मैदानी खेळ",
-      ],
-      bankTitle: "बँक खाते तपशील",
-      bankName: "बँक नाव",
-      accountHolder: "खातेधारक",
-      accountNumber: "खाते क्रमांक",
-      ifscCode: "IFSC कोड",
-      upiId: "UPI आयडी",
-      selectPayment: "पेमेंट पद्धत निवडा",
-    },
-    english: {
-      title: "Program List",
-      programs: [
-        "Waste Management",
-        "Health Check-up Camp",
-        "Historical Weapon Exhibition",
-        "Women's Cultural Programs",
-        "Mahaprasad Distribution",
-        "Outdoor Games",
-      ],
-      bankTitle: "Bank Account Details",
-      bankName: "Bank Name",
-      accountHolder: "Account Holder",
-      accountNumber: "Account Number",
-      ifscCode: "IFSC Code",
-      upiId: "UPI ID",
-      selectPayment: "Select Payment Method",
-    },
+const Table = () => {
+  const programs = [
+    { id: 1, name: "कचरा व्यवस्थापन" },
+    { id: 2, name: "आरोग्य तपासणी शिबिर" },
+    { id: 3, name: "ऐतिहासिक शस्त्र प्रदर्शन" },
+    { id: 4, name: "महिलांचे सांस्कृतिक कार्यक्रम" },
+    { id: 5, name: "महाप्रसाद वाटप" },
+    { id: 6, name: "मैदानी खेळ" }
+  ];
+
+  const [paymentMethod, setPaymentMethod] = useState('');
+
+  const accountDetails = {
+    bankName: "Mumbai Bank",
+    accountHolder: "OM SHREE SHIV SANKALP PRATISHTHAN",
+    accountNumber: "056100100001623",
+    ifscCode: "MDCB0680056",
+    upiId: "manishdhokle7-2@okaxis",
+  };
+
+  const handlePaymentChange = (event) => {
+    setPaymentMethod(event.target.value);
   };
 
   return (
     <div className="table-container">
-      <h2>{content[language].title}</h2>
+      <h2>कार्यक्रम सूची</h2>
       <table>
         <thead>
           <tr>
-            <th>Sr No</th>
-            <th>{content[language].title}</th>
+            <th>क्रमांक</th>
+            <th>कार्यक्रमाचे नाव</th>
           </tr>
         </thead>
         <tbody>
-          {content[language].programs.map((program, index) => (
-            <tr key={index}>
-              <td>{index + 1}</td>
-              <td>{program}</td>
+          {programs.map((program) => (
+            <tr key={program.id}>
+              <td>{program.id}</td>
+              <td>{program.name}</td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      <h2>{content[language].bankTitle}</h2>
+      <h2>Bank Account Details</h2>
       <table>
         <tbody>
-          <tr>
-            <td>{content[language].bankName}</td>
-            <td>Mumbai Bank</td>
-          </tr>
-          <tr>
-            <td>{content[language].accountHolder}</td>
-            <td>OM SHREE SHIV SANKALP PRATISHTHAN</td>
-          </tr>
-          <tr>
-            <td>{content[language].accountNumber}</td>
-            <td>056100100001623</td>
-          </tr>
-          <tr>
-            <td>{content[language].ifscCode}</td>
-            <td>MDCB0680056</td>
-          </tr>
+          <tr><td>Bank Name</td><td>{accountDetails.bankName}</td></tr>
+          <tr><td>Account Holder</td><td>{accountDetails.accountHolder}</td></tr>
+          <tr><td>Account Number</td><td>{accountDetails.accountNumber}</td></tr>
+          <tr><td>IFSC Code</td><td>{accountDetails.ifscCode}</td></tr>
         </tbody>
       </table>
+      
+      <h3>Select Payment Method</h3>
+      <select onChange={handlePaymentChange} value={paymentMethod}>
+        <option value="">Select</option>
+        <option value="qr">QR Code Payment</option>
+        <option value="ifsc">IFSC Code Transfer</option>
+      </select>
 
-      <h3>{content[language].selectPayment}</h3>
+      {paymentMethod === 'qr' && (
+        <div>
+          <h3>Scan QR Code to Pay</h3>
+          <img src="/Images/qr_code.jpeg" alt="QR Code" width="200" />
+          <h2>Upi Id : {accountDetails.upiId}</h2>
+        </div>
+      )}
+
+      {paymentMethod === 'ifsc' && (
+        <div>
+          <h3>Use IFSC Code for Bank Transfer</h3>
+          <p>Bank Name: {accountDetails.bankName}</p>
+          <p>Account Number: {accountDetails.accountNumber}</p>
+          <p>IFSC Code: {accountDetails.ifscCode}</p>
+        </div>
+      )}
     </div>
   );
 };
