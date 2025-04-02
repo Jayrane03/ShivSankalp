@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import signUpImg from "/Images/samb.jpg";
-import banner from "/Images/banner.png";
+import banner from "/Images/banner.jpg";
 import "../src/Styles/pages.css";
 
 const DonationPage = ({ language }) => {
