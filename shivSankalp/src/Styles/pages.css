@@ -112,7 +112,18 @@ button[type="submit"]:hover {
 input[type="password"]::-webkit-input-placeholder {
     color: #007bff !important; 
 }
-
+.payment_method{
+    display: block;
+    margin: auto;
+}
+.payment_method select {
+    width: 30vw;
+    margin-bottom: 40px;
+}
+.payment_method .bank_details{
+    width: auto ;
+    
+}
 #banner{
     border-radius: 10px;
     /*margin: 0;
@@ -174,6 +185,8 @@ input[type="password"]::-webkit-input-placeholder {
 footer {
     background: linear-gradient(to right, #a25e04c1, #1a1a1a);
     color: white;
+    width: 100vw;
+    margin-bottom: -29px;
     padding: 40px 20px;
     text-align: center;
   }
@@ -236,3 +249,215 @@ footer {
     -o-border-radius: yyyy;
 }
   
+.payment-method {
+    text-align: center;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.payment-method select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 2px solid #ff9933;
+    width: 250px;
+}
+
+.qr-payment img {
+    margin-top: 10px;
+    border: 2px solid #ff9933;
+    border-radius: 5px;
+}
+
+.bank-details {
+    margin-top: 10px;
+    padding: 10px;
+    border: 2px solid #ff9933;
+    border-radius: 8px;
+    background-color: white;
+    text-align: left;
+    width: fit-content;
+    margin: auto;
+}
+
+.bank-details table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.bank-details td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Tax Benefits Styling */
+.tax-benefits {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #d32f2f;
+    font-size: 18px;
+    text-align: center;
+    background-color: #fff3cd;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ffc107;
+}
+
+.tax-benefits-banner {
+    
+    /* background: linear-gradient(to right, #ff9933,#d8a50c, #5d5858);
+     */
+     background: linear-gradient(to right, #ff9933, #f9f7f4, #138808);
+     color: #181814;
+    text-align: center;
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 8px;
+    margin: 20px auto;
+    max-width: 90%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Program Table Styles */
+/* Program Table Styles - Matching Bank Details */
+.program-table {
+    width: 50vw;
+    margin: 20px auto;
+    border: 2px solid #ff9933;
+    border-radius: 8px;
+    background-color: white;
+    text-align: left;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.program-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.program-table th {
+    background-color: #ff9933;
+    color: black;
+    border: 1px solid black;
+    
+    font-weight: 600;
+    padding: 12px;
+    font-size: 18px;
+    text-align: left;
+}
+
+.program-table td {
+    padding: 10px;
+    border: 1px solid black;
+    /* border: 1px solid black; */
+    font-size: 16px;
+}
+
+/* Hover Effect */
+.program-table tr:hover {
+    background-color: #f9f9f9;
+    transition: 0.3s ease-in-out;
+}
+
+/* Program Table Heading */
+.program-heading {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 20px 0;
+    color: #004d74;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Home Page Container */
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background: linear-gradient(to right, #ff9933, #f9f7f4, #138808);
+    min-height: 100vh;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Language Selector Box */
+.language-selector {
+    background: white;
+    padding: 12px 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    transition: all 0.3s ease-in-out;
+}
+
+.language-selector:hover {
+    transform: scale(1.05);
+}
+
+/* Label Styling */
+.language-selector label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Select Dropdown */
+.language-selector select {
+    padding: 10px;
+    border: 2px solid #ff9933;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 500;
+    background: #fff;
+    color: #333;
+    transition: all 0.3s ease-in-out;
+}
+
+.language-selector select:hover {
+    border-color: #138808;
+}
+
+/* Donation and Footer Styling */
+.donation-container, .footer-container {
+    width: 100%;
+    max-width: 1200px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 15px 0;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.donation-container:hover, .footer-container:hover {
+    transform: translateY(-5px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .home-container {
+        padding: 15px;
+    }
+
+    .language-selector {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+
+    .donation-container, .footer-container {
+        width: 100%;
+    }
+}
